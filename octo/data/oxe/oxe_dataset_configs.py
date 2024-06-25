@@ -83,6 +83,46 @@ OXE_DATASET_CONFIGS = {
         "proprio_encoding": ProprioEncoding.POS_EULER,
         "action_encoding": ActionEncoding.EEF_POS,
     },
+    "jaco_play_ur5_aug": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "jaco_play_franka_aug": {
+        "image_obs_keys": {
+            "primary": "robot_aug_imgs",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "jaco_play_ur5_aug2": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "jaco_play_franka_aug2": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
     "berkeley_cable_routing": {
         "image_obs_keys": {
             "primary": "image",
@@ -95,6 +135,30 @@ OXE_DATASET_CONFIGS = {
     },
     "roboturk": {
         "image_obs_keys": {"primary": "front_rgb", "secondary": None, "wrist": None},
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.NONE,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "roboturk_ur5_aug": {
+        "image_obs_keys": {"primary": "robot_aug_imgs", "secondary": None, "wrist": None},
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.NONE,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "roboturk_franka_aug": {
+        "image_obs_keys": {"primary": "robot_aug_imgs", "secondary": None, "wrist": None},
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.NONE,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "roboturk_ur5_aug2": {
+        "image_obs_keys": {"primary": "merged_robot_aug", "secondary": None, "wrist": None},
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.NONE,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "roboturk_franka_aug2": {
+        "image_obs_keys": {"primary": "merged_robot_aug", "secondary": None, "wrist": None},
         "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
         "proprio_encoding": ProprioEncoding.NONE,
         "action_encoding": ActionEncoding.EEF_POS,
@@ -115,11 +179,51 @@ OXE_DATASET_CONFIGS = {
         "proprio_encoding": ProprioEncoding.JOINT,
         "action_encoding": ActionEncoding.EEF_POS,
     },
+    "viola_aug": {
+        "image_obs_keys": {
+            "primary": "robot_aug_imgs",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.JOINT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "viola_aug2": {
+        "image_obs_keys": {
+            "primary": "eye_in_hand_rgb",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.JOINT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
     "berkeley_autolab_ur5": {
         "image_obs_keys": {
             "primary": "image",
             "secondary": None,
             "wrist": "hand_image",
+        },
+        "depth_obs_keys": {"primary": "depth", "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_QUAT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "berkeley_autolab_ur5_aug": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": "depth", "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_QUAT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "berkeley_autolab_ur5_aug2": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
         },
         "depth_obs_keys": {"primary": "depth", "secondary": None, "wrist": None},
         "proprio_encoding": ProprioEncoding.POS_QUAT,
@@ -169,11 +273,51 @@ OXE_DATASET_CONFIGS = {
         "proprio_encoding": ProprioEncoding.POS_EULER,
         "action_encoding": ActionEncoding.EEF_POS,
     },
+    "stanford_hydra_dataset_converted_externally_to_rlds_aug": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "stanford_hydra_dataset_converted_externally_to_rlds_aug2": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
     "austin_buds_dataset_converted_externally_to_rlds": {
         "image_obs_keys": {
             "primary": "image",
             "secondary": None,
             "wrist": "wrist_image",
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.JOINT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "austin_buds_dataset_converted_externally_to_rlds_aug": {
+        "image_obs_keys": {
+            "primary": "robot_aug_imgs",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.JOINT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "austin_buds_dataset_converted_externally_to_rlds_aug2": {
+        "image_obs_keys": {
+            "primary": "wrist_image",
+            "secondary": None,
+            "wrist": None,
         },
         "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
         "proprio_encoding": ProprioEncoding.JOINT,
@@ -217,6 +361,26 @@ OXE_DATASET_CONFIGS = {
         "proprio_encoding": ProprioEncoding.POS_QUAT,
         "action_encoding": ActionEncoding.EEF_POS,
     },
+    "furniture_bench_dataset_converted_externally_to_rlds_aug": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_QUAT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "furniture_bench_dataset_converted_externally_to_rlds_aug2": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_QUAT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
     "cmu_franka_exploration_dataset_converted_externally_to_rlds": {
         "image_obs_keys": {
             "primary": "highres_image",
@@ -244,6 +408,16 @@ OXE_DATASET_CONFIGS = {
             "primary": "image",
             "secondary": None,
             "wrist": "wrist_image",
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_QUAT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "austin_sailor_dataset_converted_externally_to_rlds_aug": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
         },
         "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
         "proprio_encoding": ProprioEncoding.POS_QUAT,
@@ -379,6 +553,16 @@ OXE_DATASET_CONFIGS = {
         "proprio_encoding": ProprioEncoding.JOINT,
         "action_encoding": ActionEncoding.EEF_POS,
     },
+    "iamlab_cmu_pickup_insert_converted_externally_to_rlds_aug": {
+        "image_obs_keys": {
+            "primary": "merged_robot_aug",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.JOINT,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
     "uiuc_d3field": {
         "image_obs_keys": {"primary": "image_1", "secondary": "image_2", "wrist": None},
         "depth_obs_keys": {"primary": "depth_1", "secondary": "depth_2", "wrist": None},
@@ -506,6 +690,47 @@ OXE_DATASET_CONFIGS = {
     "mujoco_manip": {
         "image_obs_keys": {
             "primary": "image",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+
+    "franka_cloth": {
+        "image_obs_keys": {
+            "primary": "exterior_image_1_left",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "franka_tiger": {
+        "image_obs_keys": {
+            "primary": "exterior_image_1_left",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "jaco_bowl": {
+        "image_obs_keys": {
+            "primary": "exterior_image_1_left",
+            "secondary": None,
+            "wrist": None,
+        },
+        "depth_obs_keys": {"primary": None, "secondary": None, "wrist": None},
+        "proprio_encoding": ProprioEncoding.POS_EULER,
+        "action_encoding": ActionEncoding.EEF_POS,
+    },
+    "jaco_cup": {
+        "image_obs_keys": {
+            "primary": "exterior_image_1_left",
             "secondary": None,
             "wrist": None,
         },

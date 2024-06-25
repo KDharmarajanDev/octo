@@ -6,6 +6,7 @@ from absl import app, flags, logging
 import flax
 from flax.traverse_util import flatten_dict
 import jax
+
 from jax.sharding import Mesh, NamedSharding, PartitionSpec
 from ml_collections import config_flags, ConfigDict
 import optax
@@ -14,6 +15,8 @@ import tqdm
 import wandb
 
 from octo.data.dataset import make_single_dataset
+from octo.data.dataset import make_interleaved_dataset
+from octo.data.oxe import make_oxe_dataset_kwargs_and_weights
 from octo.model.octo_model import OctoModel
 from octo.utils.jax_utils import initialize_compilation_cache
 from octo.utils.spec import ModuleSpec
@@ -27,6 +30,7 @@ from octo.utils.train_utils import (
     check_config_diff,
     create_optimizer,
     format_name_with_config,
+    filter_eval_datasets,
     merge_params,
     process_text,
     Timer,
@@ -64,8 +68,6 @@ def main(_):
         Octo Finetuning Script
         ======================
         Pretrained model: {FLAGS.config.pretrained_path}
-        Finetuning Dataset: {FLAGS.config.dataset_kwargs.name}
-        Data dir: {FLAGS.config.dataset_kwargs.data_dir}
         Task Modality: {FLAGS.config.modality}
         Finetuning Mode: {FLAGS.config.finetuning_mode}
 
@@ -162,18 +164,34 @@ def main(_):
         del batch["dataset_name"]
         return batch
 
-    dataset = make_single_dataset(
-        FLAGS.config.dataset_kwargs,
-        traj_transform_kwargs=FLAGS.config.traj_transform_kwargs,
-        frame_transform_kwargs=FLAGS.config.frame_transform_kwargs,
-        train=True,
-    )
+    # dataset = make_single_dataset(
+    #     FLAGS.config.dataset_kwargs,
+    #     traj_transform_kwargs=FLAGS.config.traj_transform_kwargs,
+    #     frame_transform_kwargs=FLAGS.config.frame_transform_kwargs,
+    #     train=True,
+    # )
+    if "oxe_kwargs" in FLAGS.config.dataset_kwargs:
+        # create dataset_kwargs_list from oxe_kwargs
+        (
+            FLAGS.config.dataset_kwargs["dataset_kwargs_list"],
+            FLAGS.config.dataset_kwargs["sample_weights"],
+        ) = make_oxe_dataset_kwargs_and_weights(
+            **FLAGS.config.dataset_kwargs["oxe_kwargs"]
+        )
+        del FLAGS.config.dataset_kwargs["oxe_kwargs"]
+
+    FLAGS.config.dataset_kwargs.batch_size //= jax.process_count()
+    dataset = make_interleaved_dataset(**FLAGS.config.dataset_kwargs, train=True)
+
+    # train_data_iter = (
+    #     dataset.repeat()
+    #     .unbatch()
+    #     .shuffle(FLAGS.config.shuffle_buffer_size)
+    #     .batch(FLAGS.config.batch_size)
+    #     .iterator()
+    # )
     train_data_iter = (
-        dataset.repeat()
-        .unbatch()
-        .shuffle(FLAGS.config.shuffle_buffer_size)
-        .batch(FLAGS.config.batch_size)
-        .iterator()
+        dataset.iterator()
     )
     train_data_iter = map(process_batch, train_data_iter)
     example_batch = next(train_data_iter)
@@ -333,13 +351,17 @@ def main(_):
     else:
         modes_to_evaluate = ["base"]
 
-    dataset_kwargs_list = [FLAGS.config.dataset_kwargs]
+    val_datasets_kwargs_list, _ = filter_eval_datasets(
+        FLAGS.config.dataset_kwargs["dataset_kwargs_list"],
+        FLAGS.config.dataset_kwargs["sample_weights"],
+        FLAGS.config.eval_datasets,
+    )
 
     val_callback = ValidationCallback(
         loss_fn=loss_fn,
         process_batch_fn=process_batch,
         text_processor=text_processor,
-        val_dataset_kwargs_list=dataset_kwargs_list,
+        val_dataset_kwargs_list=val_datasets_kwargs_list,
         dataset_kwargs=FLAGS.config,
         modes_to_evaluate=modes_to_evaluate,
         **FLAGS.config.val_kwargs,
@@ -347,7 +369,7 @@ def main(_):
 
     viz_callback = VisualizationCallback(
         text_processor=text_processor,
-        val_dataset_kwargs_list=dataset_kwargs_list,
+        val_dataset_kwargs_list=val_datasets_kwargs_list,
         dataset_kwargs=FLAGS.config,
         modes_to_evaluate=modes_to_evaluate,
         **FLAGS.config.viz_kwargs,

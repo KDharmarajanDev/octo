@@ -166,10 +166,48 @@ OXE_FULL_MIX = [
     ("gnm_dataset", 1.0),
 ]
 
+MIRAGE_FINETUNE = [
+    ("jaco_play_ur5_aug", 1.0),
+    ("jaco_play_franka_aug", 1.0),
+    ("roboturk_ur5_aug", 1.0),
+    ("roboturk_franka_aug", 1.0),
+    ("viola_aug", 1.0),
+    ("berkeley_autolab_ur5_aug", 1.0),
+    # ("stanford_hydra_dataset_converted_externally_to_rlds_aug", 2.0),
+    ("austin_buds_dataset_converted_externally_to_rlds_aug", 1.0),
+    # ("furniture_bench_dataset_converted_externally_to_rlds_aug", 0.1),
+    # ("austin_sailor_dataset_converted_externally_to_rlds_aug", 1.0),
+    # ("iamlab_cmu_pickup_insert_converted_externally_to_rlds_aug", 1.0),
+]
+
+MIRAGE2_FINETUNE = [
+    ("jaco_play_ur5_aug2", 1.0),
+    ("jaco_play_franka_aug2", 1.0),
+    ("roboturk_ur5_aug2", 1.0),
+    ("roboturk_franka_aug2", 1.0),
+    ("viola_aug2", 1.0),
+    ("berkeley_autolab_ur5_aug2", 1.0),
+    # ("stanford_hydra_dataset_converted_externally_to_rlds_aug", 2.0),
+    ("austin_buds_dataset_converted_externally_to_rlds_aug2", 1.0),
+    # ("furniture_bench_dataset_converted_externally_to_rlds_aug", 0.1),
+    # ("austin_sailor_dataset_converted_externally_to_rlds_aug", 1.0),
+    # ("iamlab_cmu_pickup_insert_converted_externally_to_rlds_aug", 1.0),
+]
+
+IN_DOMAIN_FINETUNE = [
+    ("franka_cloth", 1.0),
+    ("franka_tiger", 1.0),
+    ("jaco_bowl", 1.0),
+    ("jaco_cup", 1.0),
+]
+
 OXE_NAMED_MIXES = {
     "bridge": BRIDGE_MIX,
     "rtx": RT_X_MIX,
     "rtx_franka": RT_X_MIX + OXE_FRANKA_MIX,
     "oxe_magic_soup": OXE_MAGIC_SOUP,
     "oxe_flex_act_soup": OXE_FLEX_ACT_SOUP,
+    "in_domain": IN_DOMAIN_FINETUNE,
+    "mirage": MIRAGE_FINETUNE,
+    "mirage2": MIRAGE2_FINETUNE
 }

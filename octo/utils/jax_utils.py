@@ -71,7 +71,7 @@ def replicate(x: Any, devices: Optional[Sequence[jax.Device]] = None) -> jax.Arr
 
 
 def initialize_compilation_cache(
-    cache_dir=os.path.expanduser("~/.jax_compilation_cache"),
+    cache_dir=os.path.expanduser("~/.jax_compilation_cache_4"),
 ):
     """Initializes the Jax persistent compilation cache."""
     compilation_cache.initialize_cache(cache_dir)
